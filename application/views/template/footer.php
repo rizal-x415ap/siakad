@@ -11,13 +11,18 @@
 </footer>
         </div>
     </div>
+    <script>
+    $(document).ready(function(){
+        <?php if($this->session->flashdata('error')): ?>
+            $('#tambah-data').modal('show');
+        <?php endif; ?>
+    });
+</script>
     <script src="<?php echo base_url('assets/dist');?>/assets/static/js/components/dark.js"></script>
     <script src="<?php echo base_url('assets/dist');?>/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     
     
     <script src="<?php echo base_url('assets/dist');?>/assets/compiled/js/app.js"></script>
-    
-
     
 <!-- Need: Apexcharts -->
 <script src="<?php echo base_url('assets/dist');?>/assets/extensions/apexcharts/apexcharts.min.js"></script>

@@ -1,5 +1,5 @@
 <div class="page-heading">
-    <h3>Profile Statistics</h3>
+    <h3>Dashboard</h3>
 </div> 
 <div class="page-content"> 
     <section class="row">
@@ -208,8 +208,8 @@
                             <img src="<?php echo base_url('assets/dist');?>/assets/compiled/jpg/1.jpg" alt="Face 1">
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                            <h5 class="font-bold"><?php echo $nama_lengkap;?></h5>
+                            <h6 class="text-muted mb-0"><i class="bi bi-check2-circle"> </i><?php echo $level;?></h6>
                         </div>
                     </div>
                 </div>
