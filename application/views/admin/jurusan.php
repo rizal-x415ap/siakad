@@ -3,18 +3,17 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Jurusan</h3>
-                <p class="text-subtitle text-muted">Daftar data jurusan.</p>
+                <p class="text-subtitle text-muted">Tabel data jurusan.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Layout Default</li>
+                        <li class="breadcrumb-item"><a href="#">Akademik</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><?= $this->uri->segment(2) ?></li>
                     </ol>
                 </nav>
             </div>
         </div>
-        <?php echo $this->session->flashdata('pesan') ?>
     </div>
     <!-- Striped rows start -->
     <section class="section">
@@ -22,18 +21,21 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <!-- <?php echo anchor('admin/jurusan/input', '<button type="button" class="btn  btn-outline-success font-bold"><i class="bi bi-clipboard-plus-fill"></i> Tambah Jurusan</button>') ?> -->
-
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#tambah-data" class="btn  btn-outline-success font-bold"><i class="bi bi-clipboard-plus-fill"></i> Tambah Jurusan</button>
-                            <h5 class="card-title">Tabel Jurusan</h5>
+                            <?php echo form_open('admin/jurusan') ?>
+                            <div class="d-flex form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2 form-control-sm" type="search" name="keyword" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-primary my-sm-0" type="submit">Search</button>
+                                <?php echo form_close() ?>
+                            </div>
                         </div>
 
                     </div>
                     <div class="card-content">
                         <!-- table striped -->
                         <div class="table-responsive">
-                            <table class="table table-striped mb-0">
+                            <table class="table table-striped table-hover mb-0">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -43,21 +45,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php if (empty($jurusan)) : ?>
+                                        <tr>
+                                            <td colspan="4">
+                                                <h5 class="text-center">Tidak ada data yang ditemukan!</h5>
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
                                     <?php
                                     foreach ($jurusan as $jrs) : ?>
                                         <tr>
-                                            <td class="text-bold-500"><?= ++$page ?></td>
+                                            <td><?= ++$page ?></td>
                                             <td><?php echo $jrs->kode_jurusan ?></td>
-                                            <td class="text-bold-500"><?php echo $jrs->nama_jurusan ?></td>
-                                            <td>
-                                                <div class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></i></div>
-                                                <div class="btn btn-sm btn-danger" href="#"><i class="bi bi-trash2-fill"></i></i></div>
-                                            <td>
+                                            <td><?php echo $jrs->nama_jurusan ?></td>
+                                            <td class="ps-0">
+                                                <div class="d-flex flex-column flex-sm-row justify-content-start align-items-start">
+                                                    <?php echo anchor('admin/jurusan/edit/' . $jrs->id_jurusan, '<div class="btn btn-sm btn-primary me-1 mb-1 rounded-pill"><i class="bi bi-pencil-fill"></i></i></div>') ?>
+                                                    <a class="btn btn-sm btn-danger rounded-pill tombol-hapus" href="<?= base_url('admin/jurusan/hapus/') . $jrs->id_jurusan ?>"><i class="bi bi-trash2-fill"></i></i></a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
+                        <p class="ms-2">Jumlah data : <b><?php echo $jlh_data ?></b></p>
                         <?php echo $pagination ?>
 
                     </div>
@@ -67,26 +79,26 @@
     </section>
     <!-- Striped rows end -->
 </div>
-<!--login form Modal -->
+<!--tambah data form Modal -->
 <div class="modal fade text-left" id="tambah-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-success">
-                <h4 class="modal-title white" id="myModalLabel33">Form tambah jurusan </h4>
+                <h4 class="modal-title white" id="myModalLabel33">Form tambah Jurusan </h4>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <i class="bi bi-x-circle-fill white"></i>
                 </button>
             </div>
-            <form method="post" action="<?php echo base_url('admin/jurusan/input_aksi') ?>">
+            <form id="myForm" method="post" action="<?php echo base_url('admin/jurusan/input_aksi') ?>">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group has-icon-left">
                                 <label for="kode-jurusan">Kode Jurusan</label>
                                 <div class="position-relative">
-                                    <input name="kode_jurusan" value="<?php echo set_value('kode_jurusan'); ?>" type="text" class="form-control <?php echo form_error('kode_jurusan') ? 'is-invalid' : ''; ?>" placeholder="Masukkan kode jurusan" id="kode-jurusan">
+                                    <input name="kode_jurusan" value="<?php echo set_value('kode_jurusan'); ?>" type="text" class="form-control <?php echo form_error('kode_jurusan') ? 'is-invalid' : ''; ?>" placeholder="Masukkan kode jurusan max(4)" id="kode-jurusan">
                                     <div class="form-control-icon">
-                                        <i class="bi bi-person"></i>
+                                        <i class="bi bi-puzzle-fill"></i>
                                     </div>
                                     <?php echo form_error('kode_jurusan', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
@@ -99,7 +111,7 @@
                                 <div class="position-relative">
                                     <input name="nama_jurusan" value="<?php echo set_value('nama_jurusan'); ?>" type="text" class="form-control <?php echo form_error('nama_jurusan') ? 'is-invalid' : ''; ?>" placeholder="Masukkan nama jurusan" id="nama-jurusan">
                                     <div class="form-control-icon">
-                                        <i class="bi bi-envelope"></i>
+                                        <i class="bi bi-rocket-fill"></i>
                                     </div>
                                     <?php echo form_error('nama_jurusan', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>

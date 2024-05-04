@@ -6,45 +6,39 @@ class Jurusan extends CI_Controller
     public function index()
     {
         // untuk simpan value input sebelumnya
-        $data = array(
-            'id_jurusan'    => set_value('id_jurusan'),
-            'kode_jurusan'  => set_value('kode_jurusan'),
-            'nama_jurusan'  => set_value('nama_jurusan')
-        );
+
+        if (!$this->uri->segment(4) == 'jurusan') {
+            $this->session->unset_userdata('keyword');
+        }
+        //ambil data keyword
+        if ($this->input->post('keyword')) {
+            $data['keyword'] = $this->input->post('keyword');
+            $this->session->set_userdata('keyword', $data['keyword']);
+        } else {
+            $data['keyword'] = $this->session->userdata('keyword');
+        }
+
         //Mebuat Pagination
-        $config['base_url'] = site_url('admin/jurusan/index'); // URL halaman 
-        $config['total_rows'] = $this->db->count_all('jurusan'); // Jumlah total baris data
-        $config['per_page'] = 7; // Jumlah data per halaman
-        $config['uri_segment'] = 4; // Segment URI yang berisi nomor halaman
+        $config['base_url'] = site_url('admin/jurusan/index');  
+        $this->db->like('kode_jurusan', $data['keyword']);
+        $this->db->or_like('nama_jurusan', $data['keyword']);
+
+        $this->db->from('jurusan');
+        $config['total_rows'] = $this->db->count_all_results(); 
+        $config['per_page'] = 7; 
+        $config['uri_segment'] = 4; 
         $choice = $config["total_rows"] / $config['per_page'];
         $config['num_links'] = floor($choice);
-        $config['next_link']        = 'Next';
-        $config['prev_link']        = 'Prev';
-        $config['first_link']       = false;
-        $config['last_link']        = false;
-        $config['full_tag_open']    = '<ul class="pagination justify-content-start mt-2">';
-        $config['full_tag_close']   = '</ul>';
-        $config['attributes']       = ['class' => 'page-link'];
-        $config['first_tag_open']   = '<li class="page-item">';
-        $config['first_tag_close']  = '</li>';
-        $config['prev_tag_open']    = '<li class="page-item">';
-        $config['prev_tag_close']   = '</li>';
-        $config['next_tag_open']    = '<li class="page-item">';
-        $config['next_tag_close']   = '</li>';
-        $config['last_tag_open']    = '<li class="page-item">';
-        $config['last_tag_close']   = '</li>';
-        $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-        $config['cur_tag_close']    = '<span class="sr-only"></span></span></li>';
-        $config['num_tag_open']     = '<li class="page-item">';
-        $config['num_tag_close']    = '</li>';
+
+        //style pagi sudah di pindah ke config pagination.php
 
 
         $this->pagination->initialize($config);
         $data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 
-
+        $data['jlh_data'] = $config['total_rows'];
         // menampilkan data
-        $data['jurusan']    = $this->jurusan_model->tampil_data($config['per_page'], $data['page'])->result();
+        $data['jurusan']    = $this->jurusan_model->tampil_data($config['per_page'], $data['page'], $data['keyword'])->result();
         $data['pagination'] = $this->pagination->create_links();
         $data['content'] = $this->load->view('admin/jurusan', $data, true);
         $this->load->view('template/_Template', $data);
@@ -56,7 +50,7 @@ class Jurusan extends CI_Controller
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('error', 'error');
+            $this->session->set_flashdata('input', 'Input data tidak valid, silakan coba lagi.');
             $this->index();
         } else {
             $data = array(
@@ -64,8 +58,7 @@ class Jurusan extends CI_Controller
                 'nama_jurusan' => $this->input->post('nama_jurusan', TRUE),
             );
             $this->jurusan_model->input_data($data);
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible show fade">Data Jurusan Berhasil ditambhakan.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+            $this->session->set_flashdata('flashData', ['type' => 'success', 'message' => 'Data Jurusan berhasil ditambahkan.']);
             redirect('admin/jurusan');
         }
     }
@@ -75,19 +68,50 @@ class Jurusan extends CI_Controller
         $this->form_validation->set_rules(
             'kode_jurusan',
             'Kode Jurusan',
-            'required|max_length[3]',
-            [
-                'required' => 'Kode jurusan tidak boleh kosong!',
-                'max_length' => 'Kode jurusan tidak boleh lebih dari 3 karakter!'
-            ]
+            'required|max_length[3]'
         );
         $this->form_validation->set_rules(
             'nama_jurusan',
-            'nama_jurusan',
-            'required',
-            [
-                'required' => 'Nama jurusan tidak boleh kosong!'
-            ]
+            'Nama Jurusan',
+            'required'
         );
+    }
+
+    public function edit($id)
+    {
+        $where = array('id_jurusan' => $id);
+        $data['jurusan'] = $this->jurusan_model->get_update_data($where, 'jurusan')->result();
+        $data['content'] = $this->load->view('admin/jurusan_edit', $data, true);
+        $this->load->view('template/_Template', $data);
+    }
+
+    public function edit_aksi()
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $id = $this->input->post('id_jurusan');
+            $this->session->set_flashdata('input', 'Input data tidak valid, silakan coba lagi.');
+            $this->edit($id);
+        } else {
+            $data = array(
+                'kode_jurusan' => $this->input->post('kode_jurusan'),
+                'nama_jurusan' => $this->input->post('nama_jurusan'),
+            );
+            $where = array(
+                'id_jurusan' => $this->input->post('id_jurusan')
+            );
+            $this->jurusan_model->update_data($where, $data, 'jurusan');
+            $this->session->set_flashdata('flashData', ['type' => 'success', 'message' => 'Data Jurusan berhasil diupdate.']);
+            redirect('admin/jurusan');
+        }
+    }
+
+    public function hapus($id)
+    {
+        $where = array('id_jurusan' => $id);
+        $this->jurusan_model->delete_data($where, 'jurusan');
+        $this->session->set_flashdata('flashData', ['type' => 'success', 'message' => 'Data Jurusan berhasil dihapus.']);
+        redirect('admin/jurusan');
     }
 }
