@@ -31,7 +31,7 @@
                                                 <div class="position-relative">
                                                     <input name="nama_matakuliah" value="<?php echo $mk->nama_matakuliah ?>" type="text" class="form-control <?php echo form_error('nama_matakuliah') ? 'is-invalid' : ''; ?>" id="nama-matakuliah">
                                                     <div class="form-control-icon">
-                                                        <i class="bi bi-rocket-fill"></i>
+                                                        <i class="bi bi-journal-bookmark"></i>
                                                     </div>
                                                     <?php echo form_error('nama_matakuliah', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                                 </div>
@@ -51,7 +51,7 @@
                                                         <option value="6">6</option>
                                                     </select>
                                                     <div class="form-control-icon">
-                                                        <i class="bi bi-rocket-fill"></i>
+                                                        <i class="bi bi-journals"></i>
                                                     </div>
                                                     <?php echo form_error('sks', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                                 </div>
@@ -73,7 +73,7 @@
                                                         <option value="8">8</option>
                                                     </select>
                                                     <div class="form-control-icon">
-                                                        <i class="bi bi-rocket-fill"></i>
+                                                        <i class="bi bi-list-check"></i>
                                                     </div>
                                                     <?php echo form_error('semester', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                                 </div>
@@ -90,7 +90,7 @@
                                                         <?php endforeach; ?>
                                                     </select>
                                                     <div class="form-control-icon">
-                                                        <i class="bi bi-rocket-fill"></i>
+                                                        <i class="bi bi-book"></i>
                                                     </div>
                                                     <?php echo form_error('nama_prodi', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                                 </div>
@@ -98,7 +98,7 @@
                                         </div>
                                     <?php endforeach; ?>
                                     <div class="col-12 d-flex justify-content-between mt-3 align-items-center">
-                                        <?php echo anchor('admin/matakuliah', '<button type="button" class="btn btn-light btn-sm me-1 mb-1">Kembali</button>') ?>
+                                        <?php echo anchor('admin/matakuliah', '<button type="button" class="btn btn-warning btn-sm me-1 mb-1">Kembali</button>') ?>
                                         <div>
                                             <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
                                             <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>

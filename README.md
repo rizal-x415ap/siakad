@@ -5,3 +5,6 @@
 4. Membuat CRUD jurusan (01 Mei 2024 10.00)
 5. Membuat CRUD Prodi (04 Mei 2024 12.00)
 6. Membuat CRUD Matakuliah (04 Mei 2024 13.00)
+7. Membua Check Login (04 Mei 2024 19.00)
+8. Membuat landing Page (04 Mei 2024 20.00)
+9. Membuat CRUD Mahasiswa (05 Mei 2024 10.00)

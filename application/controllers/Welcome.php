@@ -20,11 +20,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		
-		// Memuat view 'dashboard' dan menyimpannya dalam array $data dengan kunci 'content'
-		$data['content'] = $this->load->view('admin/dashboard','', true);
-
-		// Memuat view '_Template' dan meneruskan data
-		$this->load->view('template/_Template', $data);
+		$this->load->view('home');
 	}
 }

@@ -23,7 +23,7 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo mb-4">
-                        <a href="index.html"><img style="height: 4rem;" src="<?php echo base_url('assets/dist'); ?>/assets/compiled/svg/logo.svg" alt="Logo"></a>
+                        <a href="<?php echo base_url()?>"><img src="<?php echo base_url('assets/files'); ?>/logo/siakad.svg" alt="Logo"></a>
                     </div>
                     <h3 class="auth-title">Admin Login</h3>
                     <p class="auth-subtitle mb-4">Login menggunakan username dan password yang sudah terdaftar.</p>

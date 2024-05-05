@@ -86,10 +86,10 @@
 <div class="modal fade text-left" id="tambah-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-success">
-                <h4 class="modal-title white" id="myModalLabel33">Form tambah Program Studi </h4>
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">Form tambah Program Studi </h4>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="bi bi-x-circle-fill white"></i>
+                    <i class="bi bi-x-circle-fill text-danger"></i>
                 </button>
             </div>
             <form id="myForm" method="post" action="<?php echo base_url('admin/prodi/input_aksi') ?>">
@@ -101,7 +101,7 @@
                                 <div class="position-relative">
                                     <input name="kode_prodi" value="<?php echo set_value('kode_prodi'); ?>" type="text" class="form-control <?php echo form_error('kode_prodi') ? 'is-invalid' : ''; ?>" placeholder="Masukkan kode prodi max(3)" id="kode-prodi">
                                     <div class="form-control-icon">
-                                        <i class="bi bi-puzzle-fill"></i>
+                                        <i class="bi bi-puzzle"></i>
                                     </div>
                                     <?php echo form_error('kode_prodi', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
@@ -114,7 +114,7 @@
                                 <div class="position-relative">
                                     <input name="nama_prodi" value="<?php echo set_value('nama_prodi'); ?>" type="text" class="form-control <?php echo form_error('nama_prodi') ? 'is-invalid' : ''; ?>" placeholder="Masukkan nama prodi" id="nama-prodi">
                                     <div class="form-control-icon">
-                                        <i class="bi bi-rocket-fill"></i>
+                                    <i class="bi bi-book"></i>
                                     </div>
                                     <?php echo form_error('nama_prodi', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
@@ -132,7 +132,7 @@
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="form-control-icon">
-                                        <i class="bi bi-rocket-fill"></i>
+                                        <i class="bi bi-rocket"></i>
                                     </div>
                                     <?php echo form_error('nama_jurusan', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
@@ -141,7 +141,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success me-1 mb-1">Submit</button>
+                    <button type="submit" class="btn btn-success me-1 mb-1">Simpan</button>
                     <button type="reset" id="form_reset_button" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                 </div>
             </form>

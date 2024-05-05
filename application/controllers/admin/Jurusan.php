@@ -2,6 +2,11 @@
 
 class Jurusan extends CI_Controller
 {
+    public function __construct(){
+        parent::__construct();
+        // cek user login
+        check_login();
+    }
 
     public function index()
     {
@@ -68,7 +73,7 @@ class Jurusan extends CI_Controller
         $this->form_validation->set_rules(
             'kode_jurusan',
             'Kode Jurusan',
-            'required|max_length[3]'
+            'required|max_length[4]'
         );
         $this->form_validation->set_rules(
             'nama_jurusan',

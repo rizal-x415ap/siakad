@@ -2,7 +2,12 @@
 
 class Matakuliah extends CI_Controller
 {
-
+    public function __construct(){
+        parent::__construct();
+        // cek user login
+        check_login();
+    }
+    
     public function index()
     {
         if (!$this->uri->segment(4) == 'matakuliah') {

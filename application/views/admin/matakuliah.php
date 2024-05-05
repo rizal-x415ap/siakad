@@ -87,14 +87,14 @@
 <div class="modal fade text-left" id="tambah-data" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-success">
-                <h4 class="modal-title white" id="myModalLabel33">Form tambah Matakuliah</h4>
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">Form tambah Matakuliah</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <i class="bi bi-x-circle-fill white"></i>
+                    <i class="bi bi-x-circle-fill text-danger"></i>
                 </button>
             </div>
-            <form id="myForm" method="post" action="<?php echo base_url('admin/matakuliah/input_aksi') ?>">
-                <div class="modal-body">
+            <div class="modal-body">
+                <form id="myForm" method="post" action="<?php echo base_url('admin/matakuliah/input_aksi') ?>">
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group has-icon-left">
@@ -102,7 +102,7 @@
                                 <div class="position-relative">
                                     <input name="kode_matakuliah" value="<?php echo set_value('kode_matakuliah'); ?>" type="text" class="form-control <?php echo form_error('kode_matakuliah') ? 'is-invalid' : ''; ?>" placeholder="Masukkan kode matakuliah max(4)" id="kode-matakuliah">
                                     <div class="form-control-icon">
-                                        <i class="bi bi-puzzle-fill"></i>
+                                        <i class="bi bi-puzzle"></i>
                                     </div>
                                     <?php echo form_error('kode_matakuliah', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
@@ -114,7 +114,7 @@
                                 <div class="position-relative">
                                     <input name="nama_matakuliah" value="<?php echo set_value('nama_matakuliah'); ?>" type="text" class="form-control <?php echo form_error('nama_matakuliah') ? 'is-invalid' : ''; ?>" placeholder="Masukkan nama matakuliah" id="nama-matakuliah">
                                     <div class="form-control-icon">
-                                        <i class="bi bi-rocket-fill"></i>
+                                        <i class="bi bi-journal-bookmark"></i>
                                     </div>
                                     <?php echo form_error('nama_matakuliah', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
@@ -126,15 +126,15 @@
                                 <div class="position-relative">
                                     <select class="form-control form-select <?php echo form_error('sks') ? 'is-invalid' : ''; ?>" name="sks" id="sks">
                                         <option selected value="<?php echo set_value('sks') ?>"><?php echo set_value('sks') ? set_value('sks') : 'Pilih SKS...'; ?></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
                                     </select>
                                     <div class="form-control-icon">
-                                        <i class="bi bi-rocket-fill"></i>
+                                        <i class="bi bi-journals"></i>
                                     </div>
                                     <?php echo form_error('sks', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
@@ -146,17 +146,17 @@
                                 <div class="position-relative">
                                     <select class="form-control form-select <?php echo form_error('semester') ? 'is-invalid' : ''; ?>" name="semester" id="semester">
                                         <option selected value="<?php echo set_value('semester') ?>"><?php echo set_value('semester') ? set_value('semester') : 'Pilih Semester...'; ?></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
                                     </select>
                                     <div class="form-control-icon">
-                                        <i class="bi bi-rocket-fill"></i>
+                                        <i class="bi bi-list-check"></i>
                                     </div>
                                     <?php echo form_error('semester', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
@@ -173,19 +173,19 @@
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="form-control-icon">
-                                        <i class="bi bi-rocket-fill"></i>
+                                        <i class="bi bi-book"></i>
                                     </div>
                                     <?php echo form_error('nama_prodi', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success me-1 mb-1">Submit</button>
-                    <button type="reset" id="form_reset_button" class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success me-1 mb-1">Simpan</button>
+                <button type="reset" id="form_reset_button" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

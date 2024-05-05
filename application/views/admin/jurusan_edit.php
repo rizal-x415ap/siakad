@@ -31,7 +31,7 @@
                                                 <div class="position-relative">
                                                     <input name="kode_jurusan" value="<?php echo $jrs->kode_jurusan ?>" type="text" class="form-control <?php echo form_error('kode_jurusan') ? 'is-invalid' : ''; ?>" id="kode-jurusan">
                                                     <div class="form-control-icon">
-                                                        <i class="bi bi-puzzle-fill"></i>
+                                                        <i class="bi bi-puzzle"></i>
                                                     </div>
                                                     <?php echo form_error('kode_jurusan', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                                 </div>
@@ -44,7 +44,7 @@
                                                 <div class="position-relative">
                                                     <input name="nama_jurusan" value="<?php echo $jrs->nama_jurusan ?>" type="text" class="form-control <?php echo form_error('nama_jurusan') ? 'is-invalid' : ''; ?>" id="nama-jurusan">
                                                     <div class="form-control-icon">
-                                                        <i class="bi bi-rocket-fill"></i>
+                                                        <i class="bi bi-rocket"></i>
                                                     </div>
                                                     <?php echo form_error('nama_jurusan', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                                 </div>
@@ -52,7 +52,7 @@
                                         </div>
                                     <?php endforeach; ?>
                                     <div class="col-12 d-flex justify-content-between mt-3 align-items-center">
-                                        <?php echo anchor('admin/jurusan','<button type="button" class="btn btn-light btn-sm me-1 mb-1">Kembali</button>')?>
+                                        <?php echo anchor('admin/jurusan','<button type="button" class="btn btn-warning btn-sm me-1 mb-1">Kembali</button>')?>
                                         <div>
                                             <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
                                             <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>

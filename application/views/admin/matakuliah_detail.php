@@ -32,33 +32,33 @@
                                         <tr>
                                             <th>Kode Matakuliah</th>
                                             <td>:</td>
-                                            <td class="font-bold"><?php echo $dt->kode_matakuliah ?></td>
+                                            <td><?php echo $dt->kode_matakuliah ?></td>
                                         </tr>
                                         <tr>
                                             <th>Nama Matakuliah</th>
                                             <td>:</td>
-                                            <td class="font-bold"><?php echo $dt->nama_matakuliah ?></td>
+                                            <td><?php echo $dt->nama_matakuliah ?></td>
                                         </tr>
                                         <tr>
                                             <th>Jumlah SKS</th>
                                             <td>:</td>
-                                            <td class="font-bold"><?php echo $dt->sks ?></td>
+                                            <td><?php echo $dt->sks ?></td>
                                         </tr>
                                         <tr>
                                             <th>Semester</th>
                                             <td>:</td>
-                                            <td class="font-bold"><?php echo $dt->semester ?></td>
+                                            <td><?php echo $dt->semester ?></td>
                                         </tr>
                                         <tr>
                                             <th>Program Studi</th>
                                             <td>:</td>
-                                            <td class="font-bold"><?php echo $dt->nama_prodi ?></td>
+                                            <td><?php echo $dt->nama_prodi ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                             </table>
                         </div>
                     </div>
-                    <div class="d-flex m-3">                    <?php echo anchor('admin/matakuliah','<button type="button" class="btn btn-light me-1 mb-1">Kembali</button>')?>
+                    <div class="d-flex m-3">                    <?php echo anchor('admin/matakuliah','<button type="button" class="btn btn-warning btn-sm me-1 mb-1">Kembali</button>')?>
 </div>
                     </div>
                 </div>

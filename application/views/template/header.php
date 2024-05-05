@@ -8,7 +8,7 @@
 
 
 
-    <link rel="shortcut icon" href="<?php echo base_url('assets/dist'); ?>/assets/compiled/svg/favicon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/files'); ?>/logo/icon.svg" type="image/x-icon">
 
 
     <link rel="stylesheet" href="<?php echo base_url('assets/dist'); ?>/assets/compiled/css/app.css">
@@ -25,7 +25,7 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="index.html"><img src="<?php echo base_url('assets/dist'); ?>/assets/compiled/svg/logo.svg" alt="Logo" srcset=""></a>
+                            <a href="index.html"><img src="<?php echo base_url('assets/files'); ?>/logo/siakad.svg" alt="Logo" srcset=""></a>
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
@@ -56,7 +56,7 @@
                     <ul class="menu">
                         <li class="sidebar-title"></li>
                         <?php $menu = $this->uri->segment(2)?>
-                        <?php $list = array('jurusan', 'prodi', 'matakuliah')?>                       
+                        <?php $list = array('jurusan', 'prodi', 'matakuliah', 'mahasiswa')?>                       
 
                         <li class="sidebar-item <?php if($menu == 'dashboard'){echo 'active';} ?> ">
                             <a href="<?php echo base_url('admin/dashboard'); ?>" class='sidebar-link'>
@@ -82,8 +82,8 @@
                                 <li class="submenu-item  <?php if($menu == 'matakuliah'){echo 'active';} ?>">
                                     <a href="<?php echo base_url('admin/matakuliah'); ?>" class="submenu-link">Mata Kuliah</a>
                                 </li>
-                                <li class="submenu-item  ">
-                                    <a href="#link" class="submenu-link">Mahasiswa</a>
+                                <li class="submenu-item  <?php if($menu == 'mahasiswa'){echo 'active';} ?>">
+                                    <a href="<?php echo base_url('admin/mahasiswa'); ?>" class="submenu-link">Mahasiswa</a>
                                 </li>
                                 <li class="submenu-item  ">
                                     <a href="#link" class="submenu-link">Tahun Akademik</a>
