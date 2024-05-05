@@ -35,6 +35,9 @@ class Mahasiswa_model extends CI_Model {
         $this->db->where($where);
         $this->db->update($table,$data);
     }
+    public function tampil_id($table,$where){
+        return $this->db->get_where($table,$where);
+       }
 
     public function delete_data($where,$table)
     {

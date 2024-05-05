@@ -103,10 +103,15 @@ class Mahasiswa extends CI_Controller
 
     public function edit_aksi()
     {
+        $username = $this->session->userdata('username');
+        $config['upload_path'] = './assets/files/foto/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = 2048;
+        $config['file_name'] = $username . '_' . substr(md5(date('Y-m-d H:i:s')), 1, 5);
+        $this->load->library('upload', $config);
         $this->_rules();
-
+        $id = $this->input->post('id');
         if ($this->form_validation->run() == FALSE) {
-            $id = $this->input->post('id');
             $this->session->set_flashdata('input', 'Input data tidak valid, silakan coba lagi.');
             $this->edit($id);
         } else {
@@ -123,11 +128,25 @@ class Mahasiswa extends CI_Controller
             );
 
             $where = array(
-                'id' => $this->input->post('id', TRUE)
+                'id' => $this->input->post('id')
             );
+
+            if (!empty($_FILES['file']['name'])) {
+                if ($this->upload->do_upload('file')) {
+                    $nama_file = $this->mahasiswa_model->tampil_id('mahasiswa', $where)->row();
+                    unlink('./assets/files/foto/' . $nama_file->photo);
+                    $file_ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+                    $data['photo'] = $config['file_name'] . '.' . $file_ext;
+                } else {
+                    $error = strip_tags($this->upload->display_errors());
+                    $this->session->set_flashdata('flashData', ['type' => 'error', 'message' => $error]);
+                    redirect('admin/mahasiswa/edit/'.$id);
+                }
+            }
+
             $this->mahasiswa_model->update_data($where, $data, 'mahasiswa');
             $this->session->set_flashdata('flashData', ['type' => 'success', 'message' => 'Data Mahasiswa berhasil diupdate.']);
-            redirect('admin/mahasiswa');
+            redirect('admin/mahasiswa/detail/'.$id);
         }
     }
 
@@ -136,7 +155,7 @@ class Mahasiswa extends CI_Controller
         $this->form_validation->set_rules(
             'nim',
             'NIM',
-            'required|max_length[8]'
+            'required|max_length[8]|numeric'
         );
         $this->form_validation->set_rules(
             'nama_lengkap',
@@ -151,12 +170,12 @@ class Mahasiswa extends CI_Controller
         $this->form_validation->set_rules(
             'email',
             'Email',
-            'required'
+            'required|valid_email'
         );
         $this->form_validation->set_rules(
             'telepon',
             'No Telepon',
-            'required'
+            'required|numeric|max_length[8]'
         );
         $this->form_validation->set_rules(
             'tempat_lahir',
@@ -183,9 +202,9 @@ class Mahasiswa extends CI_Controller
     public function hapus($id)
     {
         $where = array('id' => $id);
-        $nama_file = $this->upload_model->tampil_id('mahasiswa', $where)->row();
+        $nama_file = $this->mahasiswa_model->tampil_id('mahasiswa', $where)->row();
         unlink('./assets/files/foto/' . $nama_file->photo);
-        $this->prodi_model->delete_data($where, 'mahasiswa');
+        $this->mahasiswa_model->delete_data($where, 'mahasiswa');
         $this->session->set_flashdata('flashData', ['type' => 'success', 'message' => 'Data Matakuliah berhasil dihapus.']);
         redirect('admin/mahasiswa');
     }

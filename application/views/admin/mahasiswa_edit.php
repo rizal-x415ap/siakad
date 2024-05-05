@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-content mt-1">
                         <div class="card-body">
-                            <form method="post" action="<?php echo base_url('admin/mahasiswa/edit_aksi') ?>" class="form form-vertical">
+                            <form method="post" action="<?php echo base_url('admin/mahasiswa/edit_aksi') ?>" class="form form-vertical" enctype="multipart/form-data">
                                 <div class="form-body">
                                     <div class="row">
                                         <?php foreach ($mahasiswa as $mhs) : ?>
@@ -147,6 +147,12 @@
                                                         </div>
                                                         <?php echo form_error('nama_prodi', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="nama-matakuliah">Pas Foto (Kosongkan jika tidak ingin merubah foto!)</label>
+                                                    <input class="form-control"  name="file" type="file" id="formFile">
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex justify-content-between mt-3 align-items-center">

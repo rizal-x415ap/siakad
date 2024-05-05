@@ -87,9 +87,8 @@ class Matakuliah extends CI_Controller
     public function edit_aksi()
     {
         $this->_rules();
-
+        $id = $this->input->post('kode_matakuliah');
         if ($this->form_validation->run() == FALSE) {
-            $id = $this->input->post('kode_matakuliah');
             $this->session->set_flashdata('input', 'Input data tidak valid, silakan coba lagi.');
             $this->edit($id);
         } else {
@@ -106,7 +105,7 @@ class Matakuliah extends CI_Controller
             );
             $this->matakuliah_model->update_data($where, $data, 'matakuliah');
             $this->session->set_flashdata('flashData', ['type' => 'success', 'message' => 'Data Matakuliah berhasil diupdate.']);
-            redirect('admin/matakuliah');
+            redirect('admin/matakuliah/detail/'.$id);
         }
     }
 
