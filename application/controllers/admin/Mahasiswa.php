@@ -175,7 +175,7 @@ class Mahasiswa extends CI_Controller
         $this->form_validation->set_rules(
             'telepon',
             'No Telepon',
-            'required|numeric|max_length[8]'
+            'required|numeric|max_length[15]'
         );
         $this->form_validation->set_rules(
             'tempat_lahir',
