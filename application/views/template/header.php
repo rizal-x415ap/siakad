@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>SIAKAD</title>
 
 
 
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/dist'); ?>/assets/compiled/css/app.css">
     <link rel="stylesheet" href="<?php echo base_url('assets/dist'); ?>/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="<?php echo base_url('assets/dist'); ?>/assets/compiled/css/iconly.css">
+
 </head>
 
 <body>
@@ -56,7 +57,7 @@
                     <ul class="menu">
                         <li class="sidebar-title"></li>
                         <?php $menu = $this->uri->segment(2)?>
-                        <?php $list = array('jurusan', 'prodi', 'matakuliah', 'mahasiswa')?>                       
+                        <?php $list = array('jurusan', 'prodi', 'matakuliah', 'mahasiswa', 'tahun_akademik','krs')?>                       
 
                         <li class="sidebar-item <?php if($menu == 'dashboard'){echo 'active';} ?> ">
                             <a href="<?php echo base_url('admin/dashboard'); ?>" class='sidebar-link'>
@@ -85,11 +86,11 @@
                                 <li class="submenu-item  <?php if($menu == 'mahasiswa'){echo 'active';} ?>">
                                     <a href="<?php echo base_url('admin/mahasiswa'); ?>" class="submenu-link">Mahasiswa</a>
                                 </li>
-                                <li class="submenu-item  ">
-                                    <a href="#link" class="submenu-link">Tahun Akademik</a>
+                                <li class="submenu-item  <?php if($menu == 'tahun_akademik'){echo 'active';} ?>">
+                                    <a href="<?php echo base_url('admin/tahun_akademik'); ?>" class="submenu-link">Tahun Akademik</a>
                                 </li>
-                                <li class="submenu-item  ">
-                                    <a href="#link" class="submenu-link">KRS</a>
+                                <li class="submenu-item  <?php if($menu == 'krs'){echo 'active';} ?>">
+                                    <a href="<?php echo base_url('admin/krs'); ?>" class="submenu-link">KRS</a>
                                 </li>
                                 <li class="submenu-item  ">
                                     <a href="#link" class="submenu-link">Input Nilai</a>

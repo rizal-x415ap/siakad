@@ -27,44 +27,44 @@
                         <!-- table striped -->
                         <div class="table-responsive">
                             <table class="table table-lg table-hover mb-0">
-                                    <?php
-                                    foreach ($detail as $dt) : ?>
-                                        <tr>
-                                            <th>Kode Matakuliah</th>
-                                            <td>:</td>
-                                            <td><?php echo $dt->kode_matakuliah ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Nama Matakuliah</th>
-                                            <td>:</td>
-                                            <td><?php echo $dt->nama_matakuliah ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Jumlah SKS</th>
-                                            <td>:</td>
-                                            <td><?php echo $dt->sks ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Semester</th>
-                                            <td>:</td>
-                                            <td><?php echo $dt->semester ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Program Studi</th>
-                                            <td>:</td>
-                                            <td><?php echo $dt->nama_prodi ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                <?php
+                                foreach ($detail as $dt) : ?>
+                                    <tr>
+                                        <th>Kode Matakuliah</th>
+                                        <td>:</td>
+                                        <td><?php echo $dt->kode_matakuliah ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Matakuliah</th>
+                                        <td>:</td>
+                                        <td><?php echo $dt->nama_matakuliah ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Jumlah SKS</th>
+                                        <td>:</td>
+                                        <td><?php echo $dt->sks ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Semester</th>
+                                        <td>:</td>
+                                        <td><?php echo $dt->semester ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Program Studi</th>
+                                        <td>:</td>
+                                        <td><?php echo $dt->nama_prodi ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </table>
                         </div>
                     </div>
-                    <div class="d-flex m-3">                    <?php echo anchor('admin/matakuliah','<button type="button" class="btn btn-warning btn-sm me-1 mb-1">Kembali</button>')?>
-</div>
+                    <div class="d-flex m-3"> <?php echo anchor('admin/matakuliah', '<button type="button" class="btn btn-warning btn-sm me-1 mb-1">Kembali</button>') ?>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Striped rows end -->
+</div>
+</section>
+<!-- Striped rows end -->
 </div>
 <!--tambah data form Modal -->

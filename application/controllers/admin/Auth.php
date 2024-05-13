@@ -1,11 +1,16 @@
 <?php
 
 class Auth extends CI_Controller
-{
+{   
+    
 
     public function index()
     {
-        $this->load->view('admin/login');
+        if(isset($this->session->userdata['username'])){
+            redirect('admin/dashboard');
+        }else{
+            $this->load->view('admin/login');
+        }
     }
 
     public function proses_login()

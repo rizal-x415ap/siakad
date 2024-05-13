@@ -19,7 +19,11 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
 	public function index()
-	{
-		$this->load->view('home');
-	}
+    {
+        if(isset($this->session->userdata['username'])){
+            redirect('admin/dashboard');
+        }else{
+            $this->load->view('home');
+        }
+    }
 }

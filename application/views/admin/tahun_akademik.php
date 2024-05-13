@@ -2,8 +2,8 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Prodi</h3>
-                <p class="text-subtitle text-muted">Tabel data prodi.</p>
+                <h3>Tahun Akademik</h3>
+                <p class="text-subtitle text-muted">Tabel data tahun akademik.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -22,8 +22,8 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#tambah-data" class="btn  btn-outline-success font-bold"><i class="bi bi-clipboard-plus-fill"></i> Tambah Prodi</button>
-                            <?php echo form_open('admin/prodi') ?>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#tambah-data" class="btn  btn-outline-success font-bold"><i class="bi bi-clipboard-plus-fill"></i> Tambah Tahun Akademik</button>
+                            <?php echo form_open('admin/tahun_akademik') ?>
                             <div class="d-flex form-inline my-2 my-lg-0">
                                 <input class="form-control mr-sm-2 form-control-sm " type="search" name="keyword" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-primary my-sm-0" type="submit">Search</button>
@@ -39,14 +39,14 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kode Prodi</th>
-                                        <th>Nama Prodi</th>
-                                        <th>Nama Jurusan</th>
+                                        <th>Tahun Akademik</th>
+                                        <th>Semester</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if (empty($prodi)) : ?>
+                                    <?php if (empty($tahun_akademik)) : ?>
                                         <tr>
                                             <td colspan="4">
                                                 <h5 class="text-center">Tidak ada data yang ditemukan!</h5>
@@ -54,16 +54,20 @@
                                         </tr>
                                     <?php endif; ?>
                                     <?php
-                                    foreach ($prodi as $prd) : ?>
+                                    foreach ($tahun_akademik as $tmik) : ?>
                                         <tr>
                                             <td><?= ++$page ?></td>
-                                            <td><?php echo $prd->kode_prodi ?></td>
-                                            <td><?php echo $prd->nama_prodi ?></td>
-                                            <td><?php echo $prd->nama_jurusan ?></td>
+                                            <td><?php echo $tmik->tahun_akademik ?></td>
+                                            <td><?php echo $tmik->semester ?></td>
+                                            <td><?php if ($tmik->status == 'Aktif') {
+                                                    echo '<span class="badge bg-success">Aktif</span>';
+                                                } else if ($tmik->status == 'Tidak Aktif') {
+                                                    echo '<span class="badge bg-warning">Tidak Aktif</span>';
+                                                } ?></td>
                                             <td class="ps-0">
                                                 <div class="d-flex flex-column flex-sm-row justify-content-start align-items-start">
-                                                    <?php echo anchor('admin/prodi/edit/' . $prd->id_prodi, '<div class="btn btn-sm btn-primary me-1 mb-1 rounded-pill"><i class="bi bi-pencil-fill"></i></i></div>') ?>
-                                                    <a class="btn btn-sm btn-danger rounded-pill tombol-hapus" href="<?= base_url('admin/prodi/hapus/') . $prd->id_prodi ?>"><i class="bi bi-trash2-fill"></i></i></a>
+                                                    <?php echo anchor('admin/tahun_akademik/edit/' . $tmik->id_thn_akad, '<div class="btn btn-sm btn-primary me-1 mb-1 rounded-pill"><i class="bi bi-pencil-fill"></i></i></div>') ?>
+                                                    <a class="btn btn-sm btn-danger rounded-pill tombol-hapus" href="<?= base_url('admin/tahun_akademik/hapus/') . $tmik->id_thn_akad ?>"><i class="bi bi-trash2-fill"></i></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -92,49 +96,50 @@
                     <i class="bi bi-x-circle-fill text-danger"></i>
                 </button>
             </div>
-            <form id="myForm" method="post" action="<?php echo base_url('admin/prodi/input_aksi') ?>">
+            <form id="myForm" method="post" action="<?php echo base_url('admin/tahun_akademik/input_aksi') ?>">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group has-icon-left">
-                                <label for="kode-prodi">Kode Prodi</label>
+                                <label for="tahun-akademik">Tahun Akademik</label>
                                 <div class="position-relative">
-                                    <input name="kode_prodi" value="<?php echo set_value('kode_prodi'); ?>" type="text" class="form-control <?php echo form_error('kode_prodi') ? 'is-invalid' : ''; ?>" placeholder="Masukkan kode prodi max(3)" id="kode-prodi">
+                                    <input name="tahun_akademik" value="<?php echo set_value('tahun_akademik'); ?>" type="text" class="form-control <?php echo form_error('tahun_akademik') ? 'is-invalid' : ''; ?>" placeholder="Masukkan tahun akademik" id="tahun-akademik">
                                     <div class="form-control-icon">
-                                        <i class="bi bi-puzzle"></i>
+                                        <i class="bi bi-calendar-check"></i>
                                     </div>
-                                    <?php echo form_error('kode_prodi', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
+                                    <?php echo form_error('tahun_akademik', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
-
                             <div class="form-group has-icon-left">
-                                <label for="nama-prodi">Nama Prodi</label>
+                                <label for="semester">Semester</label>
                                 <div class="position-relative">
-                                    <input name="nama_prodi" value="<?php echo set_value('nama_prodi'); ?>" type="text" class="form-control <?php echo form_error('nama_prodi') ? 'is-invalid' : ''; ?>" placeholder="Masukkan nama prodi" id="nama-prodi">
-                                    <div class="form-control-icon">
-                                    <i class="bi bi-book"></i>
-                                    </div>
-                                    <?php echo form_error('nama_prodi', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-
-                            <div class="form-group has-icon-left">
-                                <label for="nama-jurusan">Nama Jurusan</label>
-                                <div class="position-relative">
-                                    <select class="form-control form-select <?php echo form_error('nama_jurusan') ? 'is-invalid' : ''; ?>" name="nama_jurusan" id="nama-jurusan">
-                                        <option hidden selected value="<?php echo set_value('nama_jurusan') ?>"><?php echo set_value('nama_jurusan') ? set_value('nama_jurusan') : 'Pilih jurusan...'; ?></option>
-                                        <?php foreach ($jurusan as $jrs) : ?>
-                                            <option value="<?php echo $jrs->nama_jurusan ?>"><?php echo $jrs->nama_jurusan ?></option>
-                                        <?php endforeach; ?>
+                                    <select class="form-control form-select <?php echo form_error('semester') ? 'is-invalid' : ''; ?>" name="semester" id="semester">
+                                        <option hidden selected value="<?php echo set_value('semester') ?>"><?php echo set_value('semester') ? set_value('semester') : 'Pilih semester...'; ?></option>
+                                        <option value="Ganjil">Ganjil</option>
+                                        <option value="Genap">Genap</option>
                                     </select>
                                     <div class="form-control-icon">
-                                        <i class="bi bi-rocket"></i>
+                                        <i class="bi bi-list-check"></i>
                                     </div>
-                                    <?php echo form_error('nama_jurusan', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
+                                    <?php echo form_error('semester', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group has-icon-left">
+                                <label for="status">Status</label>
+                                <div class="position-relative">
+                                    <select class="form-control form-select <?php echo form_error('status') ? 'is-invalid' : ''; ?>" name="status" id="status">
+                                        <option hidden selected value="<?php echo set_value('status') ?>"><?php echo set_value('status') ? set_value('status') : 'Pilih status...'; ?></option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Tidak Aktif">Tidak Aktif</option>
+                                    </select>
+                                    <div class="form-control-icon">
+                                        <i class="bi bi-question-circle"></i>
+                                    </div>
+                                    <?php echo form_error('status', '<div class="invalid-feedback"><i class="bx bx-radio-circle"></i>', '</div>'); ?>
                                 </div>
                             </div>
                         </div>

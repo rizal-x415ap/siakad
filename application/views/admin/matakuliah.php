@@ -125,7 +125,7 @@
                                 <label for="sks">SKS</label>
                                 <div class="position-relative">
                                     <select class="form-control form-select <?php echo form_error('sks') ? 'is-invalid' : ''; ?>" name="sks" id="sks">
-                                        <option selected value="<?php echo set_value('sks') ?>"><?php echo set_value('sks') ? set_value('sks') : 'Pilih SKS...'; ?></option>
+                                        <option hidden selected value="<?php echo set_value('sks') ?>"><?php echo set_value('sks') ? set_value('sks') : 'Pilih SKS...'; ?></option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -145,7 +145,7 @@
                                 <label for="semester">Semester</label>
                                 <div class="position-relative">
                                     <select class="form-control form-select <?php echo form_error('semester') ? 'is-invalid' : ''; ?>" name="semester" id="semester">
-                                        <option selected value="<?php echo set_value('semester') ?>"><?php echo set_value('semester') ? set_value('semester') : 'Pilih Semester...'; ?></option>
+                                        <option hidden  selected value="<?php echo set_value('semester') ?>"><?php echo set_value('semester') ? set_value('semester') : 'Pilih Semester...'; ?></option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -167,7 +167,7 @@
                                 <label for="nama-prodi">Program Studi</label>
                                 <div class="position-relative">
                                     <select class="form-control form-select <?php echo form_error('nama_prodi') ? 'is-invalid' : ''; ?>" name="nama_prodi" id="nama-prodi">
-                                        <option selected value="<?php echo set_value('nama_prodi') ?>"><?php echo set_value('nama_prodi') ? set_value('nama_prodi') : 'Pilih prodi...'; ?></option>
+                                        <option hidden selected value="<?php echo set_value('nama_prodi') ?>"><?php echo set_value('nama_prodi') ? set_value('nama_prodi') : 'Pilih prodi...'; ?></option>
                                         <?php foreach ($prodi as $prd) : ?>
                                             <option value="<?php echo $prd->nama_prodi ?>"><?php echo $prd->nama_prodi ?></option>
                                         <?php endforeach; ?>
